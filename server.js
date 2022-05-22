@@ -12,7 +12,8 @@ app.use(express.json());
 //routes
 
 app.get("/", (req, res) => res.send("Welcome to JWT-Basics"));
-app.use(require("./routes"));
+
+app.use("/api/v1/", require("./routes"));
 app.use(require("./middleware/error-handler"));
 app.use(require("./middleware/not-found"));
 
