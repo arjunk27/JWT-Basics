@@ -11,19 +11,7 @@ const login = async (req, res) => {
 };
 
 const dashboard = async (req, res) => {
-  const authHeaders = req.headers.authorization;
-  if (!authHeaders || !authHeaders.startsWith("Bearer ")) {
-    res.status(401).send("unauthorized");
-  }
-  const token = authHeaders.split(" ")[1];
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    res
-      .status(200)
-      .json({ msg: "Welcome to dashbord", user: decoded.username });
-  } catch (error) {
-    res.status(401).send("unauthorized");
-  }
+  res.status(200).json({ msg: "Welcome to dashbord", user: req.user.username });
 };
 
 module.exports = { login, dashboard };
